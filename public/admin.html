@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>WVFC Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-slate-50">
+  <header class="max-w-5xl mx-auto px-4 py-6 flex items-center gap-4">
+    <img src="/WVFC_Logo.png" class="h-12 w-auto logo-shadow" />
+    <h1 class="text-2xl font-bold">Admin — Signups</h1>
+    <div class="ml-auto"><a href="/" class="btn">Public</a></div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 pb-20 space-y-6">
+    <section id="loginCard" class="card max-w-md">
+      <form id="loginForm" class="space-y-3">
+        <h2 class="text-xl font-semibold">Log in</h2>
+        <label class="label">Username <input id="user" class="input" required></label>
+        <label class="label">Password <input id="pass" type="password" class="input" required></label>
+        <div class="flex justify-end gap-2">
+          <button class="btn btn-primary">Log in</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="app" class="hidden space-y-4">
+      <div class="card">
+        <h2 class="text-lg font-semibold mb-3">Create / Edit Event</h2>
+        <form id="eventForm" class="grid md:grid-cols-2 gap-3">
+          <input type="hidden" id="evId">
+          <label class="label">Title <input id="evTitle" class="input" required></label>
+          <label class="label">Location (optional) <input id="evLoc" class="input"></label>
+          <label class="label md:col-span-2">Description <textarea id="evDesc" class="input"></textarea></label>
+          <label class="label">Starts At <input id="evStart" type="datetime-local" class="input" required></label>
+          <label class="label">Ends At <input id="evEnd" type="datetime-local" class="input"></label>
+          <label class="label">Overall Capacity (optional) <input id="evCap" type="number" min="0" class="input" placeholder="blank = unlimited"></label>
+          <div class="md:col-span-2 flex justify-end gap-2">
+            <button type="button" id="resetBtn" class="btn">Reset</button>
+            <button class="btn btn-primary">Save</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold">Events</h2>
+          <button id="newBtn" class="btn">New</button>
+        </div>
+        <table class="w-full text-sm mt-3">
+          <thead class="text-left text-slate-600">
+            <tr><th>Title</th><th>When</th><th>Signed</th><th></th></tr>
+          </thead>
+          <tbody id="evTable"></tbody>
+        </table>
+      </div>
+
+      <div id="positionsCard" class="card hidden">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold">Positions for: <span id="posEventTitle"></span></h2>
+          <button id="closePositions" class="btn">Close</button>
+        </div>
+        <form id="posForm" class="grid grid-cols-3 gap-2 mt-3">
+          <input type="hidden" id="posEventId">
+          <label class="label">Name <input id="posName" class="input" required></label>
+          <label class="label">Capacity <input id="posCap" type="number" min="1" class="input" required></label>
+          <div class="flex items-end"><button class="btn btn-primary w-full">Add</button></div>
+        </form>
+        <table class="w-full text-sm mt-3">
+          <thead class="text-left text-slate-600"><tr><th>Name</th><th>Capacity</th><th>Signed</th><th></th></tr></thead>
+          <tbody id="posTable"></tbody>
+        </table>
+      </div>
+
+      <div id="rosterCard" class="card hidden">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-semibold">Roster: <span id="rosterTitle"></span></h2>
+          <button id="closeRoster" class="btn">Close</button>
+        </div>
+        <table class="w-full text-sm mt-3">
+          <thead class="text-left text-slate-600">
+            <tr><th>Name</th><th>Position</th><th>Email</th><th>Phone</th><th>Signed</th></tr>
+          </thead>
+          <tbody id="rosterBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="/admin.js" type="module"></script>
+</body>
+</html>

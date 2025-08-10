@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WVFC Signups</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="max-w-5xl mx-auto px-4 py-6 flex items-center gap-4">
+    <img src="/WVFC_Logo.png" class="h-14 w-auto logo-shadow" alt="WVFC logo" />
+    <div class="flex-1">
+      <h1 class="text-2xl font-bold">Walkersville Volunteer Fire Co. — Event Signups</h1>
+      <p class="text-sm text-slate-600">Sign up or remove yourself—no login required.</p>
+    </div>
+    <a href="/admin" class="btn">Admin</a>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 pb-20">
+    <section id="events" class="grid md:grid-cols-2 gap-4"></section>
+
+    <!-- Signup dialog -->
+    <dialog id="signupDialog" class="card max-w-lg w-full">
+      <form id="signupForm" class="space-y-3">
+        <h3 class="text-xl font-semibold">Sign up for <span id="dlgTitle"></span></h3>
+        <input type="hidden" id="dlgEventId">
+        <input type="hidden" id="dlgPositionId">
+        <div id="positionWrap" class="hidden">
+          <label class="label">Position
+            <select id="suPosition" class="input"></select>
+          </label>
+        </div>
+        <label class="label">Name
+          <input id="suName" class="input" required />
+        </label>
+        <label class="label">Email (optional)
+          <input id="suEmail" class="input" type="email" />
+        </label>
+        <label class="label">Phone (optional)
+          <input id="suPhone" class="input" />
+        </label>
+        <p class="text-xs text-slate-500">Note: Only one signup per email or phone number for each event.</p>
+        <div class="flex gap-2 justify-end pt-2">
+          <button type="button" class="btn" onclick="signupDialog.close()">Cancel</button>
+          <button class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      <div id="signupResult" class="hidden space-y-2">
+        <h4 class="text-lg font-semibold">You're in! 🎉</h4>
+        <p>Keep this private cancel code safe: <code id="cancelCode" class="px-2 py-1 bg-slate-100 rounded"></code></p>
+        <p class="text-sm text-slate-600">We saved it to this browser. You can also bookmark the button below.</p>
+        <a id="cancelLink" class="btn">Cancel my spot</a>
+        <div class="flex justify-end">
+          <button class="btn btn-primary" onclick="signupDialog.close()">Done</button>
+        </div>
+      </div>
+    </dialog>
+  </main>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>
